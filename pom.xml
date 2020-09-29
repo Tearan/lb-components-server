@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lbyiot.components</groupId>
+    <groupId>com.lbyiot</groupId>
     <artifactId>lb-components-server</artifactId>
     <version>1.0.0-LB</version>
 
@@ -56,7 +56,7 @@
     <!-- 开发者信息-->
     <developers>
         <developer>
-            <name>Terran</name>
+            <name>Tearan</name>
             <email>929145946@qq.com</email>
             <organization>https://github.com/Tearan</organization>
         </developer>
@@ -65,7 +65,7 @@
     <!-- 开源地址-->
     <scm>
         <url>https://github.com/Tearan/lb-components-server</url>
-        <connection>scm:git:https://github.com/Tearan/lb-components-server</connection>
+        <connection>https://github.com/Tearan/lb-components-server.git</connection>
         <developerConnection>scm:git:git@github.com:Tearan/lb-components-server.git</developerConnection>
     </scm>
 
@@ -142,7 +142,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -173,14 +173,17 @@
         </plugins>
     </build>
 
-
     <!-- 提交到资料库地址-->
     <distributionManagement>
         <!-- 快照仓库-->
         <snapshotRepository>
-            <id>snapshots</id>
+            <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
 
 </project>
