@@ -220,7 +220,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             return;
         }
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
-        List<File> fileList = new ArrayList<>();
+        List<File> fileList = new ArrayList<File>();
         for (String path : pathArray){
             FileUtil.fileList(path,fileList);
         }
@@ -237,12 +237,12 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         /** 转换成集合*/
         List<String> stringList = Arrays.asList(fileName);
         /** 存放临时规则文件*/
-        List<String> strings = new ArrayList<>();
+        List<String> strings = new ArrayList<String>();
         /** 存入1级缓存*/
         String pathTotal = getPath();
         Assert.notNull(pathTotal,"path must be not null");
         String[] pathArray = pathTotal.split(KieAccessor.PATH_SPLIT);
-        List<File> fileList = new ArrayList<>();
+        List<File> fileList = new ArrayList<File>();
         for (String path : pathArray){
             FileUtil.fileList(path,fileList);
         }
