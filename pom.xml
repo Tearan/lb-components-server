@@ -9,7 +9,7 @@
     <version>1.0.0-LB</version>
 
     <modules>
-        <module>lb-drools-component</module>
+        <module>drools-component</module>
     </modules>
 
     <packaging>pom</packaging>
