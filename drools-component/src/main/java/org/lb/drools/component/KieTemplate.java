@@ -21,6 +21,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
+import org.lb.drools.component.common.Constants;
 import org.lb.drools.component.common.KieAccessor;
 import org.lb.drools.component.utils.FileUtil;
 import org.springframework.beans.factory.BeanClassLoaderAware;
@@ -33,8 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static org.lb.drools.component.common.Constants.*;
 
 /**
  * @ClassName KieTemplate
@@ -97,7 +96,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             return null;
         }
         // drl文件
-        if (realPath.endsWith(SUFFIX_DRL)) {
+        if (realPath.endsWith(Constants.SUFFIX_DRL)) {
             return read(file);
         }
         InputStream is = null;
@@ -107,11 +106,11 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             log.error("file not fount.");
         }
         // excel文件 xls和xlsx都支持
-        if (realPath.endsWith(SUFFIX_EXCEL)||realPath.endsWith(SUFFIX_EXCEL_2007)) {
+        if (realPath.endsWith(Constants.SUFFIX_EXCEL)||realPath.endsWith(Constants.SUFFIX_EXCEL_2007)) {
             return new SpreadsheetCompiler().compile(is, InputType.XLS);
         }
         // csv文件
-        if (realPath.endsWith(SUFFIX_CSV)) {
+        if (realPath.endsWith(Constants.SUFFIX_CSV)) {
             return new SpreadsheetCompiler().compile(is, InputType.CSV);
         }
         if (is != null) {
@@ -183,7 +182,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         }
         KieBase kieBase = kieHelper.build(kieBaseConfiguration);
         KieSession kieSession = kieBase.newKieSession();
-        if (getListener() == null || !LISTENER_CLOSE.equalsIgnoreCase(getMode())){
+        if (getListener() == null || !Constants.LISTENER_CLOSE.equalsIgnoreCase(getMode())){
             kieSession.addEventListener(new DefaultRuleRuntimeEventListener());
             kieSession.addEventListener(new DefaultAgendaEventListener());
             kieSession.addEventListener(new DefaultProcessEventListener());
