@@ -13,8 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="drools-component" target="8" />
-      <module name="generator-component" target="8" />
-      <module name="iot-device-demo-ganerated" target="1.8" />
+      <module name="generator-component" target="1.8" />
       <module name="lb-components-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
