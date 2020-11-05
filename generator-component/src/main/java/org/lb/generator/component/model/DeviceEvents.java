@@ -16,15 +16,11 @@ import java.util.List;
 @Data
 public class DeviceEvents {
 
-    /**
-     * 设备id
-     */
+    /** 设备id */
     @JsonProperty("object_device_id")
     String deviceId;
 
-    /**
-     * 服务事件列表
-     */
+    /** 服务事件列表 */
     @JsonProperty("services")
     List<DeviceEvent> services;
 }

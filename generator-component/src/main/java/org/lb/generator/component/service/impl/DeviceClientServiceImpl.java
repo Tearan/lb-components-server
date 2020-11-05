@@ -60,7 +60,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
         this.connection = new MqttConnectionServiceImpl(clientConf, this);
         this.device = device;
         this.rawMessageListenerMap = new ConcurrentHashMap<>();
-
     }
 
     public ClientConf getClientConf() {
@@ -87,19 +86,15 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 和平台建立连接，此接口为阻塞调用，超时时长60s。连接成功时，SDK会自动向平台订阅系统定义的topic。
-     *
      * @return 0表示连接成功，其他表示连接失败
      */
     public int connect() {
-
         synchronized (this) {
             if (executorService == null) {
                 executorService = Executors.newScheduledThreadPool(ClientThreadCount);
             }
         }
-
         int ret = connection.connect();
-
         //退避机制重连
         while (ret != 0) {
             connectFailedTime++;
@@ -117,16 +112,13 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
                 log.debug("connect failed" + connectFailedTime + "times");
             }
         }
-
         connectFailedTime = 0;
-
         return ret;
     }
 
     /**
      * 上报设备消息
      * 如果需要上报子设备消息，需要调用DeviceMessage的setDeviceId接口设置为子设备的设备id
-     *
      * @param deviceMessage 设备消息
      * @param listener      监听器，用于接收上报结果
      */
@@ -254,7 +246,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 批量上报子设备属性
-     *
      * @param deviceProperties 子设备属性列表
      * @param listener         发布监听器
      */
@@ -276,14 +267,10 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
         ObjectNode node = JsonUtil.createObjectNode();
         node.putPOJO("devices", deviceProperties);
-
         String topic = "$oc/devices/" + getDeviceId() + "/sys/gateway/sub_devices/properties/report?encoding=gzip";
-
         byte[] compress = IotUtil.compress(node.toString(), DEFAULT_GZIP_ENCODEING);
         publishRawMessage(new RawMessage(topic, compress), listener);
-
     }
-
 
     private void OnPropertiesSet(RawMessage message) {
         String requestId = IotUtil.getRequestId(message.getTopic());
@@ -291,7 +278,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
         if (propsSet == null) {
             return;
         }
-
         /** 只处理直连设备的，子设备的由AbstractGateway处理*/
         if (propertyListener != null && (propsSet.getDeviceId() == null || propsSet.getDeviceId().equals(getDeviceId()))) {
             propertyListener.onPropertiesSet(requestId, propsSet.getServices());
@@ -313,7 +299,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
         device.onPropertiesGet(requestId, propsGet);
     }
 
-
     private void onCommand(RawMessage message) {
         String requestId = IotUtil.getRequestId(message.getTopic());
         Command command = JsonUtil.convertJsonStringToObject(message.toString(), Command.class);
@@ -321,15 +306,12 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
             log.error("invalid command");
             return;
         }
-
         if (commandListener != null && (command.getDeviceId() == null || command.getDeviceId().equals(getDeviceId()))) {
             commandListener.onCommand(requestId, command.getServiceId(),
                     command.getCommandName(), command.getParas());
             return;
         }
-
         device.onCommand(requestId, command);
-
     }
 
     private void onCommandV3(RawMessage message) {
@@ -338,12 +320,10 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
             log.error("invalid commandV3");
             return;
         }
-
         if (commandV3Listener != null) {
             commandV3Listener.onCommandV3(commandV3);
         }
     }
-
 
     private void onDeviceMessage(RawMessage message) {
         DeviceMessage deviceMessage = JsonUtil.convertJsonStringToObject(message.toString(),
@@ -352,7 +332,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
             log.error("invalid deviceMessage: " + message.toString());
             return;
         }
-
         if (deviceMessageListener != null && (deviceMessage.getDeviceId() == null || deviceMessage.getDeviceId().equals(getDeviceId()))) {
             deviceMessageListener.onDeviceMessage(deviceMessage);
             return;
@@ -361,7 +340,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
     }
 
     private void onEvent(RawMessage message) {
-
         DeviceEvents deviceEvents = JsonUtil.convertJsonStringToObject(message.toString(), DeviceEvents.class);
         if (deviceEvents == null) {
             log.error("invalid events");
@@ -374,27 +352,22 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
         requestManager.onRequestResponse(message);
     }
 
-
     @Override
     public void onMessageReceived(RawMessage message) {
-
         if (executorService == null) {
             log.error("executionService is null");
             return;
         }
-
         executorService.schedule(new Runnable() {
             @Override
             public void run() {
                 try {
                     String topic = message.getTopic();
-
                     RawMessageListenerService listener = rawMessageListenerMap.get(topic);
                     if (listener != null) {
                         listener.onMessageReceived(message);
                         return;
                     }
-
                     if (topic.contains("/messages/down")) {
                         onDeviceMessage(message);
                     } else if (topic.contains("sys/commands/request_id")) {
@@ -415,7 +388,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
                     } else {
                         log.error("unknown topic: " + topic);
                     }
-
                 } catch (Exception e) {
                     log.error(ExceptionUtil.getBriefStackTrace(e));
                 }
@@ -430,12 +402,10 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 上报命令响应
-     *
      * @param requestId  请求id，响应的请求id必须和请求的一致
      * @param commandRsp 命令响应
      */
     public void respondCommand(String requestId, CommandRsp commandRsp) {
-
         String topic = "$oc/devices/" + deviceId + "/sys/commands/response/request_id=" + requestId;
         RawMessage rawMessage = new RawMessage(topic, JsonUtil.convertObject2String(commandRsp));
         connection.publishMessage(rawMessage, null);
@@ -443,15 +413,12 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 上报读属性响应
-     *
      * @param requestId 请求id，响应的请求id必须和请求的一致
      * @param services  服务属性
      */
     public void respondPropsGet(String requestId, List<ServiceProperty> services) {
-
         DeviceProperties deviceProperties = new DeviceProperties();
         deviceProperties.setServices(services);
-
         String topic = "$oc/devices/" + deviceId + "/sys/properties/get/response/request_id=" + requestId;
         RawMessage rawMessage = new RawMessage(topic, JsonUtil.convertObject2String(deviceProperties));
         connection.publishMessage(rawMessage, null);
@@ -459,12 +426,10 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 上报写属性响应
-     *
      * @param requestId 请求id，响应的请求id必须和请求的一致
      * @param iotResult 写属性结果
      */
     public void respondPropsSet(String requestId, IotResult iotResult) {
-
         String topic = "$oc/devices/" + deviceId + "/sys/properties/set/response/request_id=" + requestId;
         RawMessage rawMessage = new RawMessage(topic, JsonUtil.convertObject2String(iotResult));
         connection.publishMessage(rawMessage, null);
@@ -472,7 +437,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 获取设备id
-     *
      * @return 设备id
      */
     public String getDeviceId() {
@@ -545,7 +509,6 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
      * @param listener 监听器
      */
     public void reportEvent(DeviceEvent event, ActionListenerService listener) {
-
         DeviceEvents events = new DeviceEvents();
         events.setDeviceId(getDeviceId());
         events.setServices(Arrays.asList(event));

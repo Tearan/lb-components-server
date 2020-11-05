@@ -108,7 +108,7 @@ public class DeviceProfileParser {
                 }
                 try (InputStream in = zip.getInputStream(entry);
                      FileOutputStream out = new FileOutputStream(outPath)) {
-                    byte[] buf1 = new byte[1024];
+                    byte[] buf1 = new byte[BUFFER];
                     int len;
                     while ((len = in.read(buf1)) > 0) {
                         out.write(buf1, 0, len);
@@ -130,7 +130,6 @@ public class DeviceProfileParser {
             log.debug("设备功能路径为空");
             return null;
         }
-
         JsonFactory factory = new JsonFactory();
         ObjectMapper objectMapper = new ObjectMapper(factory);
         File file = new File(filePath);

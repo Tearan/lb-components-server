@@ -15,15 +15,11 @@ public class IotResult {
     public final static IotResult FAIL = new IotResult(1, "Fail");
     public final static IotResult TIMEOUT = new IotResult(2, "Timeout");
 
-    /**
-     * 结果码，0表示成功，其他为失败
-     */
+    /** 结果码，0表示成功，其他为失败 */
     @JsonProperty("result_code")
     private int resultCode;
 
-    /**
-     * 结果描述
-     */
+    /** 结果描述 */
     @JsonProperty("result_desc")
     private String resultDesc;
 

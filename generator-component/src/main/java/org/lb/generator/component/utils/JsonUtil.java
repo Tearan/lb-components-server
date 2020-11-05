@@ -21,6 +21,7 @@ import java.util.Map;
  */
 @Slf4j
 public class JsonUtil {
+
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     static {
@@ -149,13 +150,11 @@ public class JsonUtil {
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             String rStr = null;
-
             try {
                 rStr = mapper.writeValueAsString(object);
             } catch (JsonProcessingException var4) {
                 log.error(ExceptionUtil.getBriefStackTrace(var4));
             }
-
             return rStr;
         }
     }

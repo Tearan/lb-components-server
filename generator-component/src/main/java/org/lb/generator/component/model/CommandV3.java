@@ -13,9 +13,14 @@ import java.util.Map;
  */
 @Data
 public class CommandV3 {
+
     private String msgType;
+
     private String serviceId;
+
     private int mid;
+
     private String cmd;
+
     private Map<String, Object> paras;
 }

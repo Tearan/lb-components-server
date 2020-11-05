@@ -18,7 +18,6 @@ public interface IService {
 
     /**
      * 读属性回调
-     *
      * @param fields 指定读取的字段名，不指定则读取全部可读字段
      * @return 属性值，json格式
      */
@@ -26,7 +25,6 @@ public interface IService {
 
     /**
      * 写属性回调
-     *
      * @param properties 属性期望值
      * @return 操作结果jsonObject
      */
@@ -41,7 +39,6 @@ public interface IService {
 
     /**
      * 事件回调
-     *
      * @param deviceEvent 事件
      */
     void onEvent(DeviceEvent deviceEvent);

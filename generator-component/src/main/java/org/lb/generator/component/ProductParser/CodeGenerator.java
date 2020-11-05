@@ -5,10 +5,8 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.IOUtils;
-
 import java.io.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +21,7 @@ public class CodeGenerator {
 
     private static void extractResources() throws IOException {
         new File("tmp\\").mkdir();
-        //提取资源文件到当前目录
+        /** 提取資源文件到当前目录*/
         try (InputStream inputStream = CodeGenerator.class.getClassLoader()
                 .getResourceAsStream("generated-demo.zip");
              OutputStream outputStream = new FileOutputStream("tmp\\generated-demo.zip")){
@@ -50,10 +48,8 @@ public class CodeGenerator {
              for (String sid : productInfo.getServiceCapabilityMap().keySet()){
                  DeviceService deviceService = productInfo.getServiceCapabilityMap().get(sid);
                  File file = new File("generated-demo/src/main/java/com/huaweicloud/sdk/iot/device/demo/" + deviceService.getServiceType() + "Service.java");
-
                  Map<String, Object> root = new HashMap<String, Object>();
                  root.put("service", deviceService);
-
                  Writer javaWriter = new FileWriter(file);
                  template.process(root, javaWriter);
                  javaWriter.flush();
@@ -69,12 +65,10 @@ public class CodeGenerator {
         if (file == null){
             return;
         }
-
         /** 如果dir对应的文件不存在，则退出*/
         if (!file.exists()){
             return;
         }
-
         if (file.isFile()){
             file.delete();
         }else {
@@ -82,21 +76,24 @@ public class CodeGenerator {
                 CodeGenerator.deleteFile(file1);
             }
         }
-
         file.delete();
     }
 
-    public static void main(String[] args) throws Exception{
-        String productZipPath = "E:\\QQ微信记录\\test_3297a84779f647a890beb65c3e4ab711_test.zip";
-        //提取资源文件到当前目录
+    /**
+     * 生成maven项目
+     * @param productZipPath
+     * @throws IOException
+     */
+    public static boolean generateMavenProject(String productZipPath) throws IOException{
+        /** 提取资源资源文件到当前目录*/
         extractResources();
-        List<String> strings = DeviceProfileParser.unZipFiles("tmp\\generated-demo.zip", "");
-        log.info("11111" + strings);
+        DeviceProfileParser.unZipFiles("tmp\\generated-demo.zip", "");
         ProductInfo productInfo = DeviceProfileParser.pareProductFile(productZipPath);
-        productInfo.getDeviceCapability().getModel();
         generateService(productInfo);
-        log.info("demo code generated to: " + new File("").getAbsolutePath() + "\\generated-demo");
-        //删除临时文件
+        log.info("demo code generated to:[{}\\generated-demo]",new File("").getAbsolutePath());
+        /**删除临时文件*/
         deleteFile(new File("tmp\\"));
+        return true;
     }
+
 }

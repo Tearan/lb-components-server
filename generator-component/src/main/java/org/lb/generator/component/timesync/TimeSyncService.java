@@ -52,45 +52,35 @@ public class TimeSyncService extends AbstractServiceImpl {
      * 发起时间同步请求，使用TimeSyncListener接收响应
      */
     public void RequestTimeSync() {
-
         Map<String, Object> node = new HashMap<>();
         node.put("device_send_time", System.currentTimeMillis());
-
         DeviceEvent deviceEvent = new DeviceEvent();
         deviceEvent.setEventType("time_sync_request");
         deviceEvent.setParas(node);
         deviceEvent.setServiceId("$time_sync");
         deviceEvent.setEventTime(IotUtil.getTimeStamp());
-
         getIotDevice().getClient().reportEvent(deviceEvent, new ActionListenerService() {
             @Override
             public void onSuccess(Object context) {
-
             }
-
             @Override
             public void onFailure(Object context, Throwable var2) {
                 log.error("reportEvent failed: " + var2.getMessage());
             }
         });
-
     }
 
     @Override
     public void onEvent(DeviceEvent deviceEvent) {
-
         if (listener == null){
             return;
         }
-
         if (deviceEvent.getEventType().equalsIgnoreCase("time_sync_response")) {
             ObjectNode node = JsonUtil.convertMap2Object(deviceEvent.getParas(), ObjectNode.class);
             long device_send_time = node.get("device_send_time").asLong();
             long server_recv_time = node.get("server_recv_time").asLong();
             long server_send_time = node.get("server_send_time").asLong();
-
             listener.onTimeSyncResponse(device_send_time, server_recv_time, server_send_time);
         }
     }
-
 }

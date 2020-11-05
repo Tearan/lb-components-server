@@ -72,7 +72,6 @@ public class OTAService extends AbstractServiceImpl {
 
     /**
      * 设置OTA监听器
-     *
      * @param otaListener OTA监听器
      */
     public void setOtaListener(OTAListenerService otaListener) {
@@ -85,14 +84,12 @@ public class OTAService extends AbstractServiceImpl {
 
     /**
      * 上报升级状态
-     *
      * @param result      升级结果
      * @param progress    升级进度0-100
      * @param version     当前版本
      * @param description 具体失败的原因，可选参数
      */
     public void reportOtaStatus(int result, int progress, String version, String description) {
-
         Map<String, Object> node = new HashMap<>();
         node.put("result_code", result);
         node.put("progress", progress);
@@ -100,19 +97,15 @@ public class OTAService extends AbstractServiceImpl {
             node.put("description", description);
         }
         node.put("version", version);
-
         DeviceEvent deviceEvent = new DeviceEvent();
         deviceEvent.setEventType("upgrade_progress_report");
         deviceEvent.setParas(node);
         deviceEvent.setServiceId("$ota");
         deviceEvent.setEventTime(IotUtil.getTimeStamp());
-
         getIotDevice().getClient().reportEvent(deviceEvent, new ActionListenerService() {
             @Override
             public void onSuccess(Object context) {
-
             }
-
             @Override
             public void onFailure(Object context, Throwable var2) {
                 log.error("reportOtaStatus failed: " + var2.getMessage());
@@ -120,65 +113,52 @@ public class OTAService extends AbstractServiceImpl {
         });
     }
 
-
     /**
      * 上报固件版本信息
-     *
      * @param version 固件版本
      */
     public void reportVersion(String version) {
-
         Map<String, Object> node = new HashMap<>();
         node.put("fw_version", version);
         node.put("sw_version", version);
-
         DeviceEvent deviceEvent = new DeviceEvent();
         deviceEvent.setEventType("version_report");
         deviceEvent.setParas(node);
         deviceEvent.setServiceId("$ota");
         deviceEvent.setEventTime(IotUtil.getTimeStamp());
-
         getIotDevice().getClient().reportEvent(deviceEvent, new ActionListenerService() {
             @Override
             public void onSuccess(Object context) {
-
             }
-
             @Override
             public void onFailure(Object context, Throwable var2) {
                 log.error("reportVersion failed: " + var2.getMessage());
             }
         });
-
     }
 
     /**
      * 接收OTA事件处理
-     *
      * @param deviceEvent 服务事件
      */
     @Override
     public void onEvent(DeviceEvent deviceEvent) {
-
         if (otaListener == null) {
             log.info("otaListener is null");
             return;
         }
-
         if (deviceEvent.getEventType().equalsIgnoreCase("version_query")) {
             otaListener.onQueryVersion();
         } else if (deviceEvent.getEventType().equalsIgnoreCase("firmware_upgrade")
                 || deviceEvent.getEventType().equalsIgnoreCase("software_upgrade")) {
 
             OTAPackage pkg = JsonUtil.convertMap2Object(deviceEvent.getParas(), OTAPackage.class);
-
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {
                     otaListener.onNewPackage(pkg);
                 }
             });
-
         }
     }
 }

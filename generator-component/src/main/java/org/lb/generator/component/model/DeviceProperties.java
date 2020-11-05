@@ -14,8 +14,6 @@ import java.util.List;
 @Data
 public class DeviceProperties {
 
-    /**
-     * 服务属性列表
-     */
+    /** 服务属性列表 */
     List<ServiceProperty> services;
 }

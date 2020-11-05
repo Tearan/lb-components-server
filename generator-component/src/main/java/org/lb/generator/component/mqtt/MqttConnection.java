@@ -46,14 +46,12 @@ public class MqttConnection implements ConnectionService {
     }
 
     private MqttCallback callback = new MqttCallbackExtended() {
-
         @Override
         public void connectionLost(Throwable cause) {
             log.error("Connection lost.", cause);
             if (connectListener != null) {
                 connectListener.connectionLost(cause);
             }
-
         }
 
         @Override
@@ -87,8 +85,7 @@ public class MqttConnection implements ConnectionService {
     @Override
     public int connect() {
         try {
-            String timeStamp = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"))
-                    .format(DateTimeFormatter.ofPattern("yyyyMMddHH"));
+            String timeStamp = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern("yyyyMMddHH"));
             String clientId = null;
             if (clientConf.getScopeId() == null) {
                 clientId = clientConf.getDeviceId() + "_" + connectType + "_" + checkTimestamp + "_" + timeStamp;
@@ -107,12 +104,9 @@ public class MqttConnection implements ConnectionService {
             if (clientConf.getOfflineBufferSize() != null) {
                 bufferOptions.setBufferSize(clientConf.getOfflineBufferSize());
             }
-
             mqttAsyncClient.setBufferOpts(bufferOptions);
-
             MqttConnectOptions options = new MqttConnectOptions();
             if (clientConf.getServerUri().contains("ssl:")) {
-
                 try {
                     SSLContext sslContext = IotUtil.getSSLContext(clientConf);
                     options.setSocketFactory(sslContext.getSocketFactory());
@@ -122,29 +116,21 @@ public class MqttConnection implements ConnectionService {
                     return -1;
                 }
             }
-
             options.setCleanSession(false);
             options.setUserName(clientConf.getDeviceId());
-
             if (clientConf.getSecret() != null && !clientConf.getSecret().isEmpty()) {
                 String passWord = IotUtil.sha256_mac(clientConf.getSecret(), timeStamp);
                 options.setPassword(passWord.toCharArray());
             }
-
             options.setConnectionTimeout(DEFAULT_CONNECT_TIMEOUT);
             options.setKeepAliveInterval(DEFAULT_KEEPLIVE);
             options.setAutomaticReconnect(true);
             mqttAsyncClient.setCallback(callback);
-
             log.info("try to connect to " + clientConf.getServerUri());
-
-
             mqttAsyncClient.connect(options, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken iMqttToken) {
-
                     log.info("connect success " + clientConf.getServerUri());
-
                     synchronized (MqttConnection.this) {
                         connectFinished = true;
                         MqttConnection.this.notifyAll();
@@ -154,7 +140,6 @@ public class MqttConnection implements ConnectionService {
                 @Override
                 public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
                     log.info("connect failed " + throwable.toString());
-
                     synchronized (MqttConnection.this) {
                         connectFinished = true;
                         MqttConnection.this.notifyAll();
@@ -163,9 +148,7 @@ public class MqttConnection implements ConnectionService {
             });
 
             synchronized (this) {
-
                 while (!connectFinished) {
-
                     try {
                         wait(DEFAULT_CONNECT_TIMEOUT * 1000);
                     } catch (InterruptedException e) {
@@ -173,23 +156,17 @@ public class MqttConnection implements ConnectionService {
                     }
                 }
             }
-
-
         } catch (MqttException e) {
             log.error(ExceptionUtil.getBriefStackTrace(e));
-
         }
-
         return mqttAsyncClient.isConnected() ? 0 : -1;
     }
 
     @Override
     public void publishMessage(RawMessage message, ActionListenerService listener) {
-
         try {
             MqttMessage mqttMessage = new MqttMessage(message.getPayload());
             mqttMessage.setQos(message.getQos() == 0 ? 0 : DEFAULT_QOS);
-
             mqttAsyncClient.publish(message.getTopic(), mqttMessage, message.getTopic(), new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken iMqttToken) {
@@ -197,14 +174,12 @@ public class MqttConnection implements ConnectionService {
                         listener.onSuccess(null);
                     }
                 }
-
                 @Override
                 public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
                     log.error("publish message failed   " + message);
                     if (listener != null) {
                         listener.onFailure(null, throwable);
                     }
-
                 }
             });
             log.info("publish message topic =  " + message.getTopic() + ", msg = " + message.toString());
@@ -216,9 +191,7 @@ public class MqttConnection implements ConnectionService {
         }
     }
 
-
     public void close() {
-
         if (mqttAsyncClient.isConnected()) {
             try {
                 mqttAsyncClient.disconnect();
@@ -244,24 +217,19 @@ public class MqttConnection implements ConnectionService {
         this.rawMessageListener = rawMessageListener;
     }
 
-
     /**
      * 订阅指定主题
-     *
      * @param topic 主题
      */
     public void subscribeTopic(String topic, ActionListenerService listener, int qos) {
-
         try {
             mqttAsyncClient.subscribe(topic, qos, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken iMqttToken) {
-
                     if (listener != null) {
                         listener.onSuccess(topic);
                     }
                 }
-
                 @Override
                 public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
                     log.error("subscribe topic failed:" + topic);
@@ -276,6 +244,5 @@ public class MqttConnection implements ConnectionService {
                 listener.onFailure(topic, e);
             }
         }
-
     }
 }

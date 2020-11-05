@@ -14,21 +14,15 @@ public class CommandRsp {
     public static final int SUCCESS = 0;
     public static final int FAIL = -1;
 
-    /**
-     * 结果码，0表示成功，其他表示失败。不带默认认为成功
-     */
+    /** 结果码，0表示成功，其他表示失败。不带默认认为成功 */
     @JsonProperty("result_code")
     int resultCode;
 
-    /**
-     * 命令的响应名称，在设备关联的产品模型中定义。可选
-     */
+    /** 命令的响应名称，在设备关联的产品模型中定义。可选 */
     @JsonProperty("response_name")
     String responseName;
 
-    /**
-     * 命令的响应参数，具体字段在设备关联的产品模型中定义。可选
-     */
+    /** 命令的响应参数，具体字段在设备关联的产品模型中定义。可选 */
     Object paras;
 
     public CommandRsp(int code) {

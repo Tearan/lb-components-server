@@ -32,9 +32,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 public class AbstractDevice {
+
     private DeviceClientServiceImpl client;
     private String deviceId;
-
     private Map<String, AbstractServiceImpl> services = new ConcurrentHashMap<>();
     private OTAService otaService;
     private FileManager fileManager;
@@ -43,13 +43,11 @@ public class AbstractDevice {
 
     /**
      * 构造函数，使用密码创建设备
-     *
      * @param serverUri    平台访问地址，比如ssl://iot-acc.cn-north-4.myhuaweicloud.com:8883
      * @param deviceId     设备id
      * @param deviceSecret 设备密码
      */
     public AbstractDevice(String serverUri, String deviceId, String deviceSecret) {
-
         ClientConf clientConf = new ClientConf();
         clientConf.setServerUri(serverUri);
         clientConf.setDeviceId(deviceId);
@@ -63,14 +61,12 @@ public class AbstractDevice {
 
     /**
      * 构造函数，使用证书创建设备
-     *
      * @param serverUri   平台访问地址，比如ssl://iot-acc.cn-north-4.myhuaweicloud.com:8883
      * @param deviceId    设备id
      * @param keyStore    证书容器
      * @param keyPassword 证书密码
      */
     public AbstractDevice(String serverUri, String deviceId, KeyStore keyStore, String keyPassword) {
-
         ClientConf clientConf = new ClientConf();
         clientConf.setServerUri(serverUri);
         clientConf.setDeviceId(deviceId);
@@ -84,7 +80,6 @@ public class AbstractDevice {
 
     /**
      * 构造函数，直接使用客户端配置创建设备，一般不推荐这种做法
-     *
      * @param clientConf 客户端配置
      */
     public AbstractDevice(ClientConf clientConf) {
@@ -103,15 +98,12 @@ public class AbstractDevice {
         this.fileManager = new FileManager();
         this.addService("$file_manager", fileManager);
         this.addService("$sdk", new SdkInfo());
-
         this.timeSyncService = new TimeSyncService();
         this.addService("$time_sync", timeSyncService);
     }
 
-
     /**
      * 初始化，创建到平台的连接
-     *
      * @return 如果连接成功，返回0；否则返回-1
      */
     public int init() {
@@ -120,15 +112,12 @@ public class AbstractDevice {
 
     /**
      * 添加服务。用户基于AbstractService定义自己的设备服务，并添加到设备
-     *
      * @param serviceId     服务id，要和设备模型定义一致
      * @param deviceService 服务实例
      */
     public void addService(String serviceId, AbstractServiceImpl deviceService) {
-
         deviceService.setIotDevice(this);
         deviceService.setServiceId(serviceId);
-
         services.putIfAbsent(serviceId, deviceService);
     }
 
@@ -143,19 +132,15 @@ public class AbstractDevice {
 
     /**
      * 查询服务
-     *
      * @param serviceId 服务id
      * @return AbstractService 服务实例
      */
     public AbstractServiceImpl getService(String serviceId) {
-
         return services.get(serviceId);
     }
 
-
     /**
      * 触发属性变化，SDK会上报变化的属性
-     *
      * @param serviceId  服务id
      * @param properties 属性列表
      */
@@ -165,19 +150,16 @@ public class AbstractDevice {
             return;
         }
         Map props = deviceService.onRead(properties);
-
         ServiceProperty serviceProperty = new ServiceProperty();
         serviceProperty.setServiceId(deviceService.getServiceId());
         serviceProperty.setProperties(props);
         serviceProperty.setEventTime(IotUtil.getTimeStamp());
-
         getClient().scheduleTask(new Runnable() {
             @Override
             public void run() {
                 client.reportProperties(Arrays.asList(serviceProperty), new ActionListenerService() {
                     @Override
                     public void onSuccess(Object context) {
-
                     }
 
                     @Override
@@ -187,12 +169,10 @@ public class AbstractDevice {
                 });
             }
         });
-
     }
 
     /**
      * 触发多个服务的属性变化，SDK自动上报变化的属性到平台
-     *
      * @param serviceIds 发生变化的服务id列表
      */
     protected void fireServicesChanged(List<String> serviceIds) {
@@ -205,7 +185,6 @@ public class AbstractDevice {
             }
 
             Map props = deviceService.onRead();
-
             ServiceProperty serviceProperty = new ServiceProperty();
             serviceProperty.setServiceId(deviceService.getServiceId());
             serviceProperty.setProperties(props);
@@ -223,9 +202,7 @@ public class AbstractDevice {
                 client.reportProperties(serviceProperties, new ActionListenerService() {
                     @Override
                     public void onSuccess(Object context) {
-
                     }
-
                     @Override
                     public void onFailure(Object context, Throwable var2) {
                         log.error("reportProperties failed: " + var2.toString());
@@ -237,56 +214,42 @@ public class AbstractDevice {
 
     /**
      * 获取设备客户端。获取到设备客户端后，可以直接调用客户端提供的消息、属性、命令等接口
-     *
      * @return 设备客户端实例
      */
     public DeviceClientServiceImpl getClient() {
         return client;
     }
 
-
     /**
      * 查询设备id
-     *
      * @return 设备id
      */
     public String getDeviceId() {
         return deviceId;
     }
 
-
     /**
      * 命令回调函数，由SDK自动调用
-     *
      * @param requestId 请求id
      * @param command   命令
      */
     public void onCommand(String requestId, Command command) {
-
-
         IService service = getService(command.getServiceId());
-
         if (service != null) {
             CommandRsp rsp = service.onCommand(command);
             client.respondCommand(requestId, rsp);
         }
-
     }
 
     /**
      * 属性设置回调，，由SDK自动调用
-     *
      * @param requestId 请求id
      * @param propsSet  属性设置请求
      */
     public void onPropertiesSet(String requestId, PropsSet propsSet) {
-
-
         for (ServiceProperty serviceProp : propsSet.getServices()) {
             IService deviceService = getService(serviceProp.getServiceId());
-
             if (deviceService != null) {
-
                 //如果部分失败直接返回
                 IotResult result = deviceService.onWrite(serviceProp.getProperties());
                 if (result.getResultCode() != IotResult.SUCCESS.getResultCode()) {
@@ -296,22 +259,17 @@ public class AbstractDevice {
             }
         }
         client.respondPropsSet(requestId, IotResult.SUCCESS);
-
     }
 
     /**
      * 属性查询回调，由SDK自动调用
-     *
      * @param requestId 请求id
      * @param propsGet  属性查询请求
      */
     public void onPropertiesGet(String requestId, PropsGet propsGet) {
-
         List<ServiceProperty> serviceProperties = new ArrayList<>();
-
         //查询所有
         if (propsGet.getServiceId() == null) {
-
             for (String ss : services.keySet()) {
                 IService deviceService = getService(ss);
                 if (deviceService != null) {
@@ -324,33 +282,26 @@ public class AbstractDevice {
             }
         } else {
             IService deviceService = getService(propsGet.getServiceId());
-
             if (deviceService != null) {
                 Map properties = deviceService.onRead();
                 ServiceProperty serviceProperty = new ServiceProperty();
                 serviceProperty.setProperties(properties);
                 serviceProperty.setServiceId(propsGet.getServiceId());
                 serviceProperties.add(serviceProperty);
-
             }
         }
-
         client.respondPropsGet(requestId, serviceProperties);
-
     }
 
     /**
      * 事件回调，由SDK自动调用
-     *
      * @param deviceEvents 设备事件
      */
     public void onEvent(DeviceEvents deviceEvents) {
-
         //子设备的
         if (deviceEvents.getDeviceId() != null && !deviceEvents.getDeviceId().equals(getDeviceId())) {
             return;
         }
-
         for (DeviceEvent event : deviceEvents.getServices()) {
             IService deviceService = getService(event.getServiceId());
             if (deviceService != null) {
@@ -361,12 +312,9 @@ public class AbstractDevice {
 
     /**
      * 消息回调，由SDK自动调用
-     *
      * @param message 消息
      */
-    public void onDeviceMessage(DeviceMessage message) {
-
-    }
+    public void onDeviceMessage(DeviceMessage message) { }
 
     /**
      * 获取OTA服务

@@ -56,47 +56,38 @@ public class FileManager extends AbstractServiceImpl {
 
     /**
      * 获取文件下载url
-     *
      * @param fileName 下载文件名
      */
     public void getDownloadUrl(String fileName) {
 
         Map<String, Object> node = new HashMap<>();
         node.put("file_name", fileName);
-
         DeviceEvent deviceEvent = new DeviceEvent();
         deviceEvent.setEventType("get_download_url");
         deviceEvent.setParas(node);
         deviceEvent.setServiceId("$file_manager");
         deviceEvent.setEventTime(IotUtil.getTimeStamp());
-
         getIotDevice().getClient().reportEvent(deviceEvent, new ActionListenerService() {
             @Override
             public void onSuccess(Object context) {
-
             }
-
             @Override
             public void onFailure(Object context, Throwable var2) {
                 log.error("reportEvent failed: " + var2.getMessage());
             }
         });
-
     }
 
     /**
      * 接收文件处理事件
-     *
      * @param deviceEvent 服务事件
      */
     @Override
     public void onEvent(DeviceEvent deviceEvent) {
-
         if (fileMangerListenerService == null) {
             log.info("fileMangerListener is null");
             return;
         }
-
         if (deviceEvent.getEventType().equalsIgnoreCase("get_upload_url_response")) {
             UrlParam urlParam = JsonUtil.convertMap2Object(deviceEvent.getParas(), UrlParam.class);
             fileMangerListenerService.onUploadUrl(urlParam);

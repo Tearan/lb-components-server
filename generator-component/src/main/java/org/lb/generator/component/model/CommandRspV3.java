@@ -11,26 +11,17 @@ import lombok.Data;
  */
 @Data
 public class CommandRspV3 {
-    /**
-     * 消息类型 固定值为：deviceRsp
-     */
+
+    /** 消息类型 固定值为：deviceRsp */
     private String msgType;
 
-    /**
-     * 命令ID，把物联网平台下发命令时携带的“mid”返回给平台。
-     */
+    /** 命令ID，把物联网平台下发命令时携带的“mid”返回给平台。*/
     private int mid;
 
-    /**
-     * 命令执行的结果码:
-     *  “0”表示执行成功。
-     *  “1”表示执行失败。
-     */
+    /** 命令执行的结果码: 【“0”表示执行成功。 “1”表示执行失败。】 */
     private int errcode;
 
-    /**
-     * 命令的应答，具体字段在设备的产品模型中定义，可选。
-     */
+    /** 命令的应答，具体字段在设备的产品模型中定义，可选。*/
     private Object body;
 
     public CommandRspV3(String msgType, int mid, int errcode) {

@@ -12,6 +12,7 @@ import lombok.Data;
  */
 @Data
 public class PropsGet {
+
     @JsonProperty("object_device_id")
     String deviceId;
 

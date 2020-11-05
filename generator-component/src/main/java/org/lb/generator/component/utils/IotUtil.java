@@ -50,14 +50,12 @@ public class IotUtil {
      * @return 设备物理标识
      */
     public static String getNodeIdFromDeviceId(String deviceId) {
-
         try {
             return deviceId.substring(deviceId.indexOf("_") + 1);
         } catch (Exception e) {
             log.error(ExceptionUtil.getBriefStackTrace(e));
             return null;
         }
-
     }
 
     /**
@@ -66,7 +64,6 @@ public class IotUtil {
      * @return 响应topic
      */
     public static String makeRspTopic(String topic) {
-
         try {
             String[] tmp = topic.split("request_id");
             return tmp[0] + "response/" + "request_id" + tmp[1];

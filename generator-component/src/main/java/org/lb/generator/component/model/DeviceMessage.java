@@ -11,39 +11,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class DeviceMessage {
 
-    /**
-     * 设备id，可选，默认为客户端本身的设备id
-     */
+    /** 设备id，可选，默认为客户端本身的设备id */
     @JsonProperty("object_device_id")
     String deviceId;
 
-    /**
-     * 消息名，可选
-     */
+    /** 消息名，可选 */
     String name;
 
-
-    /**
-     * 消息id，可选
-     */
+    /** 消息id，可选 */
     String id;
 
-
-    /**
-     * 消息具体内容
-     */
+    /** 消息具体内容 */
     String content;
 
-    /**
-     * 默认构造函数
-     */
-    public DeviceMessage() {
+    /** 默认构造函数 */
+    public DeviceMessage() {}
 
-    }
-
-    /**
-     * 构造函数
-     *
+    /** 构造函数
      * @param message 消息内容
      */
     public DeviceMessage(String message) {
@@ -52,7 +36,6 @@ public class DeviceMessage {
 
     /**
      * 查询设备id
-     *
      * @return 设备id
      */
     public String getDeviceId() {
@@ -61,7 +44,6 @@ public class DeviceMessage {
 
     /**
      * 设置设备id，不设置默认为客户端的设备id
-     *
      * @param deviceId 设备id
      */
     public void setDeviceId(String deviceId) {
@@ -70,7 +52,6 @@ public class DeviceMessage {
 
     /**
      * 查询消息名
-     *
      * @return 消息名
      */
     public String getName() {
@@ -79,7 +60,6 @@ public class DeviceMessage {
 
     /**
      * 设置消息名，默认为空
-     *
      * @param name 消息名
      */
     public void setName(String name) {
@@ -88,7 +68,6 @@ public class DeviceMessage {
 
     /**
      * 查询消息id
-     *
      * @return 消息id
      */
     public String getId() {
@@ -97,7 +76,6 @@ public class DeviceMessage {
 
     /**
      * 设置消息id
-     *
      * @param id 消息id，默认为空
      */
     public void setId(String id) {
@@ -106,7 +84,6 @@ public class DeviceMessage {
 
     /**
      * 查询消息内容
-     *
      * @return 消息内容
      */
     public String getContent() {
@@ -115,7 +92,6 @@ public class DeviceMessage {
 
     /**
      * 设置消息内容
-     *
      * @param content 消息内容
      */
     public void setContent(String content) {

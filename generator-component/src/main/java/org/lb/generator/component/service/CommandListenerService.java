@@ -10,6 +10,7 @@ import java.util.Map;
  * @Version 1.0
  */
 public interface CommandListenerService {
+
     /**
      * 命令处理
      * @param requestId   请求id

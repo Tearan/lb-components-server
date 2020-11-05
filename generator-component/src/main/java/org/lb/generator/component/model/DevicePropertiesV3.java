@@ -14,15 +14,11 @@ import java.util.List;
  */
 public class DevicePropertiesV3 {
 
-    /**
-     * 消息类型
-     */
+    /** 消息类型 */
     @JsonView
     private String msgType;
 
-    /**
-     * 上报的属性列表
-     */
+    /** 上报的属性列表 */
     @JsonProperty("data")
     private List<ServiceData> serviceDatas;
 }

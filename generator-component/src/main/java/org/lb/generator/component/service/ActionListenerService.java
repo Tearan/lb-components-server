@@ -15,7 +15,6 @@ public interface ActionListenerService {
      */
     void onSuccess(Object context);
 
-
     /**
      * 执行失败通知
      * @param context 上下文信息

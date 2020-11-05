@@ -30,7 +30,6 @@ public class IotDevice extends AbstractDevice {
      */
     public IotDevice(String serverUri, String deviceId, String deviceSecret) {
         super(serverUri, deviceId, deviceSecret);
-
     }
 
     /**
