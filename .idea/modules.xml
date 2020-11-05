@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/drools-component/drools-component.iml" filepath="$PROJECT_DIR$/drools-component/drools-component.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator-component/generator-component.iml" filepath="$PROJECT_DIR$/generator-component/generator-component.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/lb-components-server.iml" filepath="$PROJECT_DIR$/.idea/lb-components-server.iml" />
     </modules>
   </component>

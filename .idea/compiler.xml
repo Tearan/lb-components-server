@@ -8,11 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="drools-component" />
+        <module name="generator-component" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="drools-component" target="8" />
-      <module name="lb-components-server" target="1.5" />
+      <module name="generator-component" target="8" />
+      <module name="iot-device-demo-ganerated" target="1.8" />
+      <module name="lb-components-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

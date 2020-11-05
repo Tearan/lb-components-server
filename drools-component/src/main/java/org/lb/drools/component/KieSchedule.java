@@ -1,6 +1,6 @@
 package org.lb.drools.component;
 
-import org.lb.drools.component.util.ScheduledThreadPoolExecutorUtil;
+import org.lb.drools.component.utils.ScheduledThreadPoolExecutorUtil;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.concurrent.TimeUnit;

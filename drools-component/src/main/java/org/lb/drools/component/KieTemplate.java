@@ -22,7 +22,7 @@ import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.internal.utils.KieHelper;
 import org.lb.drools.component.common.KieAccessor;
-import org.lb.drools.component.util.FileUtil;
+import org.lb.drools.component.utils.FileUtil;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.util.Assert;
 

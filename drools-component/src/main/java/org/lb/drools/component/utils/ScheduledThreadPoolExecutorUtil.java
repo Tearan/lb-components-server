@@ -1,4 +1,4 @@
-package org.lb.drools.component.util;
+package org.lb.drools.component.utils;
 
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
