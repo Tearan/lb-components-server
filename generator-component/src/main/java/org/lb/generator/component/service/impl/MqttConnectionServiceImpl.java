@@ -1,6 +1,5 @@
 package org.lb.generator.component.service.impl;
 
-import com.sun.istack.internal.Interned;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
