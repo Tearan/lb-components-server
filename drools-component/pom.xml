@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.3.RELEASE</version>
-		<relativePath/>
-	</parent>
-
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.lbyiot</groupId>
 	<artifactId>drools-component</artifactId>
 	<version>1.0.0-LB</version>
+	<name>drools-component for using</name>
+	<url>https://github.com/Tearan/lb-components-server</url>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<!-- 开发者信息-->
+	<developers>
+		<developer>
+			<name>Tearan</name>
+			<email>929145946@qq.com</email>
+			<organization>https://github.com/Tearan</organization>
+		</developer>
+	</developers>
+
+	<!-- 开源地址-->
+	<scm>
+		<url>https://github.com/Tearan/lb-components-server</url>
+		<connection>https://github.com/Tearan/lb-components-server.git</connection>
+		<developerConnection>https://github.com/Tearan</developerConnection>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -37,20 +58,31 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
-	<!-- 开源地址-->
-	<scm>
-		<url>https://github.com/Tearan/lb-components-server</url>
-		<connection>https://github.com/Tearan/lb-components-server.git</connection>
-		<developerConnection>scm:git:git@github.com:Tearan/lb-components-server.git</developerConnection>
-	</scm>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.3.3.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- 提交到资料库地址-->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<!--<parent>
 		<artifactId>oss-parent</artifactId>
@@ -59,27 +91,24 @@
 	</parent>-->
 
 
-	<!-- 开发者信息-->
-	<developers>
-		<developer>
-			<name>Tearan</name>
-			<email>929145946@qq.com</email>
-			<organization>https://github.com/Tearan</organization>
-		</developer>
-	</developers>
-
-	<licenses>
-		<license>
-			<name>The Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-
 	<profiles>
 		<profile>
 			<id>release</id>
 			<build>
 				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+						<configuration>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<useReleaseProfile>false</useReleaseProfile>
+							<releaseProfiles>release</releaseProfiles>
+							<goals>deploy</goals>
+						</configuration>
+					</plugin>
+
 					<!-- 生成sources源码包的插件 -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -142,29 +171,21 @@
 					</plugin>
 				</plugins>
 			</build>
-			<distributionManagement>
-				<repository>
-					<id>ossrh</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-				</repository>
-				<snapshotRepository>
-					<id>ossrh</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-				</snapshotRepository>
-			</distributionManagement>
 		</profile>
 	</profiles>
-
-	<!-- 提交到资料库地址-->
-	<distributionManagement>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -19,7 +19,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="drools-component" options="-parameters" />
+      <module name="drools-component" options="" />
       <module name="generator-component" options="-parameters" />
     </option>
   </component>
