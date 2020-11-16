@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.lbyiot</groupId>
 	<artifactId>drools-component</artifactId>
 	<version>1.0.0-LB</version>
@@ -96,6 +97,18 @@
 			<id>release</id>
 			<build>
 				<plugins>
+					<!-- Nexus Staging Maven插件，用于部署和发布-->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.7</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -123,6 +136,7 @@
 							</execution>
 						</executions>
 					</plugin>
+
 					<!-- 生成javadoc文档包的插件 -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -141,6 +155,7 @@
 							<locale>zh_CN</locale>
 						</configuration>
 					</plugin>
+
 					<!-- GPG签名组件 -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -155,19 +170,6 @@
 								</goals>
 							</execution>
 						</executions>
-					</plugin>
-
-					<!-- Nexus Staging Maven插件，用于部署和发布-->
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.7</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>ossrh</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
