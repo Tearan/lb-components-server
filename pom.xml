@@ -9,11 +9,37 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>lb-components-server</name>
+    <description>lb-components-server</description>
+    <url>https://github.com/Tearan/lb-components-server</url>
+
     <modules>
         <module>drools-component</module>
         <module>generator-component</module>
     </modules>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <!-- 开发者信息-->
+    <developers>
+        <developer>
+            <name>Tearan</name>
+            <email>929145946@qq.com</email>
+            <organization>https://github.com/Tearan</organization>
+        </developer>
+    </developers>
+
+    <!-- 开源地址-->
+    <scm>
+        <connection>scm:git:git://github.com/Tearan/lb-components-server.git</connection>
+        <developerConnection>scm:git:git@github.com/Tearan/lb-components-server.git</developerConnection>
+        <url>https://github.com/Tearan/lb-components-server</url>
+    </scm>
 
     <!-- 提交到资料库地址-->
     <distributionManagement>
