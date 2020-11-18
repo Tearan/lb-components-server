@@ -6,24 +6,16 @@
 	<groupId>com.lbyiot</groupId>
 	<artifactId>drools-component</artifactId>
 	<version>1.0.0-LB</version>
-	<name>drools-component for using</name>
-	<url>https://github.com/Tearan/lb-components-server</url>
+	<packaging>jar</packaging>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.test.skip>true</maven.test.skip>
-	</properties>
+	<name>drools-component</name>
+	<description>drools-component</description>
+	<url>https://github.com/Tearan/lb-components-server</url>
 
 	<licenses>
 		<license>
-			<name>The Apache License, Version 2.0</name>
+			<name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
@@ -38,10 +30,20 @@
 
 	<!-- 开源地址-->
 	<scm>
-		<url>https://github.com/Tearan/lb-components-server</url>
-		<connection>scm:git:https://github.com/Tearan/lb-components-server</connection>
+		<connection>scm:git:git://github.com/Tearan/lb-components-server.git</connection>
 		<developerConnection>scm:git:git@github.com/Tearan/lb-components-server.git</developerConnection>
+		<url>https://github.com/Tearan/lb-components-server</url>
 	</scm>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.test.skip>true</maven.test.skip>
+	</properties>
 
 	<!-- 提交到资料库地址-->
 	<distributionManagement>
@@ -98,7 +100,6 @@
 		<version>9</version>
 	</parent>-->
 
-
 	<profiles>
 		<profile>
 			<id>release</id>
@@ -109,10 +110,10 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>2.4</version>
+						<version>2.2.1</version>
 						<executions>
 							<execution>
-								<id>package</id>
+								<id>attach-sources</id>
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
@@ -127,13 +128,10 @@
 						<version>2.9.1</version>
 						<executions>
 							<execution>
-								<phase>package</phase>
+								<id>attach-javadocs</id>
 								<goals>
 									<goal>jar</goal>
 								</goals>
-								<configuration>
-									<additionalparam>-Xdoclint:none</additionalparam>
-								</configuration>
 							</execution>
 						</executions>
 					</plugin>
@@ -142,12 +140,10 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
-						<configuration>
-							<useAgent>false</useAgent>
-						</configuration>
+						<version>1.5</version>
 						<executions>
 							<execution>
+								<id>sign-artifacts</id>
 								<phase>verify</phase>
 								<goals>
 									<goal>sign</goal>
@@ -160,7 +156,7 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.8</version>
+						<version>1.6.7</version>
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh</serverId>

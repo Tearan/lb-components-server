@@ -319,7 +319,6 @@ public class AbstractDevice {
 
     /**
      * 获取OTA服务
-     *
      * @return OTAService
      */
     public OTAService getOtaService() {

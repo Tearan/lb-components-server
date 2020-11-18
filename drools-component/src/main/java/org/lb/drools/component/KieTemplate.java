@@ -70,7 +70,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 根据文件名获取KieSession
      * @param fileName 文件名，可以输入多个(需要带后缀)
-     * @return KieSession
+     * @return KieSession 获取KieSession
      */
     public KieSession getKieSession(String... fileName){
         List<String> ds = new ArrayList<String>();
@@ -125,6 +125,8 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
 
     /**
      * 读取drl文件
+     * @param file 文件
+     * @return 读取drl文件
      */
     private String read(File file) {
         FileInputStream fis = null;
@@ -159,7 +161,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 把字符串解析成KieSession
      * @param drl 规则文件字符串
-     * @return KieSession
+     * @return KieSession 字符串解析成KieSession
      */
     public KieSession decodeToSession(String... drl) {
         KieHelper kieHelper = new KieHelper();
@@ -193,8 +195,8 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     /**
      * 获取绝对路径下的规则文件对应的KieBase
      * @param classPath 绝对路径/文件目录
-     * @return KieBase
-     * @throws Exception
+     * @return KieBase 1
+     * @throws Exception 读写yic
      */
     public KieBase getKieBase(String classPath) throws Exception {
         KieServices kieServices = KieServices.Factory.get();

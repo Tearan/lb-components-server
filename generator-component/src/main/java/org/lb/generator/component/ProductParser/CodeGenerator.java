@@ -102,9 +102,9 @@ public class CodeGenerator {
     }
 
 
-    public static void main(String[] args) throws IOException{
+  /*  public static void main(String[] args) throws IOException{
         boolean flang = generateMavenProject("E:\\QQ微信记录\\NBSmoke001.zip");
         System.out.println(flang);
-    }
+    }*/
 
 }
