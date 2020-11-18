@@ -6,7 +6,7 @@
 	<groupId>com.lbyiot</groupId>
 	<artifactId>generator-component</artifactId>
 	<version>1.0.0-LB</version>
-	<name>drools-component for using</name>
+	<name>generator-component for using</name>
 	<url>https://github.com/Tearan/lb-components-server</url>
 
 	<properties>

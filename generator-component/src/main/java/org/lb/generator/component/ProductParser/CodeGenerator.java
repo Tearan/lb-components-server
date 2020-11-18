@@ -3,7 +3,6 @@ package org.lb.generator.component.ProductParser;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.IOUtils;
 import java.io.*;
@@ -20,6 +19,10 @@ import java.util.Map;
 @Slf4j
 public class CodeGenerator {
 
+    /**
+     * 提取资源资源文件到当前目录
+     * @throws IOException
+     */
     private static void extractResources() throws IOException {
         new File("tmp\\").mkdir();
         /** 提取資源文件到当前目录*/
@@ -97,22 +100,10 @@ public class CodeGenerator {
         return true;
     }
 
-    public static void main(String[] args) throws IOException, TemplateException {
 
-        String productZipPath = "E:\\QQ微信记录\\Bulb_3297a84779f647a890beb65c3e4ab711_111.zip";
-        //提取资源文件到当前目录
-        extractResources();
-
-        DeviceProfileParser.unZipFiles("tmp\\generated-demo.zip", "");
-
-        ProductInfo productInfo = DeviceProfileParser.pareProductFile(productZipPath);
-        generateService(productInfo);
-        generateService(productInfo);
-
-        log.info("demo code generated to: " + new File("").getAbsolutePath() + "\\generated-demo");
-
-        //删除临时文件
-        deleteFile(new File("tmp\\"));
+    public static void main(String[] args) throws IOException{
+        boolean flang = generateMavenProject("E:\\QQ微信记录\\NBSmoke001.zip");
+        System.out.println(flang);
     }
 
 }
