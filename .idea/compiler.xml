@@ -14,13 +14,15 @@
     <bytecodeTargetLevel>
       <module name="drools-component" target="1.8" />
       <module name="generator-component" target="1.8" />
+      <module name="iot-device-demo-ganerated" target="1.8" />
       <module name="lb-components-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="drools-component" options="" />
-      <module name="generator-component" options="-parameters" />
+      <module name="generator-component" options="" />
+      <module name="iot-device-demo-ganerated" options="-parameters" />
     </option>
   </component>
 </project>
