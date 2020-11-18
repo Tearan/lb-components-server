@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import lombok.Data;
@@ -5,11 +8,9 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @ClassName ProductInfo
- * @Description 产品信息表
- * @Author Terran
- * @Date 2020/11/3 23:21
- * @Version 1.0
+ * 产品信息表
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class ProductInfo {

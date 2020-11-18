@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -5,11 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.security.KeyStore;
 
 /**
- * @ClassName ClientConf
- * @Description 客户端配置
- * @Author Terran
- * @Date 2020/11/4 17:07
- * @Version 1.0
+ * 客户端配置
+ * @author Terran
+ * @since 1.0
  */
 public class ClientConf {
 

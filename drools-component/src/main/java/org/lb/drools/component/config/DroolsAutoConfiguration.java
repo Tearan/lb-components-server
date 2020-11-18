@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.config;
 
 import org.lb.drools.component.KieSchedule;
@@ -9,11 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @ClassName DroolsAutoConfiguration
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 11:03
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Configuration
 @EnableConfigurationProperties(DroolsProperties.class)

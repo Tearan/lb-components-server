@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.client.req;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,11 +14,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName IotRequest
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 22:35
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Slf4j
 public class IotRequest {

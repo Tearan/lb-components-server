@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +17,9 @@ import java.util.List;
  *  1、面向物模型编程：根据物模型实现设备服务，SDK自动完成设备和平台之间的通讯。
  *  2、面向通讯接口编程：获取设备的客户端，直接和平台进行通讯。这种方式更复杂也更灵活
  *  这种方式简单易用，适合大多数场景
- * @ClassName IotDevice
- * @Description IOT设备类
- * @Author Terran
- * @Date 2020/11/5 16:09
- * @Version 1.0
+ * IOT设备类
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class IotDevice extends AbstractDevice {

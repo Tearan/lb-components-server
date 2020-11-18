@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.utils;
 
 import java.util.concurrent.RejectedExecutionException;
@@ -7,11 +10,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @ClassName ScheduledThreadPoolExecutorUtil
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 14:12
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 public class ScheduledThreadPoolExecutorUtil {
 

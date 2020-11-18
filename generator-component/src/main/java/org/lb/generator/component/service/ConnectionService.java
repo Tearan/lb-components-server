@@ -1,14 +1,15 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 import org.lb.generator.component.model.RawMessage;
 
 
 /**
- * @ClassName ConnectionService
- * @Description IOT连接，代表设备和平台之间的一个连接
- * @Author Terran
- * @Date 2020/11/4 22:30
- * @Version 1.0
+ * IOT连接，代表设备和平台之间的一个连接
+ * @author Terran
+ * @since  1.0
  */
 public interface ConnectionService {
 

@@ -1,13 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 import org.lb.generator.component.model.RawMessage;
 
 /**
- * @ClassName RawMessageListenerService
- * @Description 原始消息接收监听器
- * @Author Terran
- * @Date 2020/11/4 22:37
- * @Version 1.0
+ * 原始消息接收监听器
+ * @author Terran
+ * @since  1.0
  */
 public interface RawMessageListenerService {
 

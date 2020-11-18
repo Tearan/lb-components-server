@@ -1,11 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 /**
- * @ClassName RequestListenerService
- * @Description 请求监听器
- * @Author Terran
- * @Date 2020/11/4 22:36
- * @Version 1.0
+ * 请求监听器
+ * @author Terran
+ * @since  1.0
  */
 public interface RequestListenerService {
 

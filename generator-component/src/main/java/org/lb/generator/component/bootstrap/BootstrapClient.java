@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.bootstrap;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -15,11 +18,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @ClassName BootstrapClient
- * @Description 引导客户端，用于设备引导来获取服务端地址
- * @Author Terran
- * @Date 2020/11/5 10:22
- * @Version 1.0
+ * 引导客户端，用于设备引导来获取服务端地址
+ * @author Terran
+ * @since 1.0
  */
 @Slf4j
 public class BootstrapClient implements RawMessageListenerService {

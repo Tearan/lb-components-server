@@ -1,11 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 /**
- * @ClassName TimeSyncListenerService
- * @Description 监听时间同步事件
- * @Author Terran
- * @Date 2020/11/5 10:04
- * @Version 1.0
+ * 监听时间同步事件
+ * @author Terran
+ * @since  1.0
  */
 public interface TimeSyncListenerService {
 

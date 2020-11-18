@@ -1,13 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @ClassName DeviceMessage
- * @Description 设备消息
- * @Author Terran
- * @Date 2020/11/4 22:29
- * @Version 1.0
+ * 设备消息
+ * @author Terran
+ * @since 1.0
  */
 public class DeviceMessage {
 

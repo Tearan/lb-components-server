@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.mqtt;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +22,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @ClassName MqttConnection
- * @Description mqtt连接
- * @Author Terran
- * @Date 2020/11/5 11:11
- * @Version 1.0
+ * mqtt连接
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class MqttConnection implements ConnectionService {

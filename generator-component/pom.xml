@@ -11,6 +11,12 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 	<licenses>
@@ -32,8 +38,8 @@
 	<!-- 开源地址-->
 	<scm>
 		<url>https://github.com/Tearan/lb-components-server</url>
-		<connection>https://github.com/Tearan/lb-components-server.git</connection>
-		<developerConnection>https://github.com/Tearan</developerConnection>
+		<connection>scm:git:https://github.com/Tearan/lb-components-server</connection>
+		<developerConnection>scm:git:git@github.com/Tearan/lb-components-server.git</developerConnection>
 	</scm>
 
 	<dependencies>
@@ -110,11 +116,63 @@
 			<id>release</id>
 			<build>
 				<plugins>
+
+					<!-- 生成sources源码包的插件 -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.4</version>
+						<executions>
+							<execution>
+								<id>package</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<additionalparam>-Xdoclint:none</additionalparam>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- GPG签名组件 -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<configuration>
+							<useAgent>false</useAgent>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
 					<!-- Nexus Staging Maven插件，用于部署和发布-->
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.7</version>
+						<version>1.6.8</version>
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh</serverId>
@@ -123,6 +181,17 @@
 						</configuration>
 					</plugin>
 
+					<!-- compiler -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.8.1</version>
+						<configuration>
+							<source>1.8</source>
+							<target>1.8</target>
+						</configuration>
+					</plugin>
+					<!-- release -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-release-plugin</artifactId>
@@ -134,74 +203,20 @@
 							<goals>deploy</goals>
 						</configuration>
 					</plugin>
-
-					<!-- 生成sources源码包的插件 -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>3.1.0</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-					<!-- 生成javadoc文档包的插件 -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.2.0</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<charset>UTF-8</charset>
-							<locale>zh_CN</locale>
-						</configuration>
-					</plugin>
-
-					<!-- GPG签名组件 -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
 				</plugins>
 			</build>
+			<!-- 提交到资料库地址-->
+			<distributionManagement>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
 		</profile>
 	</profiles>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -16,11 +19,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 /**
- * @ClassName DeviceProfileParser
- * @Description 设备配置文件分析器
- * @Author Terran
- * @Date 2020/11/3 23:21
- * @Version 1.0
+ * 设备配置文件分析器
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class DeviceProfileParser {
@@ -41,8 +42,8 @@ public class DeviceProfileParser {
 
     /**
      * zip文件解析
-     * @param zipFile
-     * @return
+     * @param zipFile 文件路径
+     * @return 产品信息
      */
     public static ProductInfo pareProductFile(String zipFile){
         ProductInfo productInfo = new ProductInfo();
@@ -81,9 +82,10 @@ public class DeviceProfileParser {
 
     /**
      * 解析ZIP文件
-     * @param zipFile
-     * @param descDir
-     * @throws IOException
+     * @param zipFile 文件
+     * @param descDir 解压文件
+     * @throws IOException IO异常
+     * @return 返回路径
      */
     public static List<String> unZipFiles(String zipFile, String descDir) throws IOException {
         try (ZipFile zip = new ZipFile(zipFile, Charset.forName("UTF-8"))){
@@ -122,8 +124,8 @@ public class DeviceProfileParser {
 
     /**
      * 设备能力
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return  设备能力
      */
     private static List<DeviceCapability> getDeviceCapability(String filePath){
         if (filePath == null){

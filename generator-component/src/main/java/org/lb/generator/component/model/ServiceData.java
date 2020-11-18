@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import lombok.Data;
@@ -5,11 +8,9 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @ClassName ServiceData
- * @Description 设备属性（V3）
- * @Author Terran
- * @Date 2020/11/4 22:47
- * @Version 1.0
+ * 设备属性（V3）
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class ServiceData {

@@ -1,11 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 /**
- * @ClassName ConnectListenerService
- * @Description 连接监听器
- * @Author Terran
- * @Date 2020/11/4 22:32
- * @Version 1.0
+ * 连接监听器
+ * @author Terran
+ * @since  1.0
  */
 public interface ConnectListenerService {
 

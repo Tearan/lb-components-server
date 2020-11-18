@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.client.req;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,6 +10,8 @@ import java.util.Map;
 
 /**
  * 服务的事件
+ * @author Terran
+ * @since 1.0
  */
 public class DeviceEvent {
 

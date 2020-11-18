@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +27,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @ClassName AbstractDevice
- * @Description 抽象设备类
- * @Author Terran
- * @Date 2020/11/4 17:19
- * @Version 1.0
+ * 抽象设备类
+ * @author Terran
+ * @since 1.0
  */
 @Slf4j
 public class AbstractDevice {
@@ -327,7 +328,7 @@ public class AbstractDevice {
 
     /**
      * 获取时间同步服务
-     * @return
+     * @return TimeSyncService
      */
     public TimeSyncService getTimeSyncService() {
         return timeSyncService;

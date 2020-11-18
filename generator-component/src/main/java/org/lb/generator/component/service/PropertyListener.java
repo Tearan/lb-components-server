@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 
@@ -6,11 +9,9 @@ import org.lb.generator.component.model.ServiceProperty;
 import java.util.List;
 
 /**
- * @ClassName PropertyListener
- * @Description 属性监听器，用于接收平台下发的属性读写操作
- * @Author Terran
- * @Date 2020/11/4 17:22
- * @Version 1.0
+ * 属性监听器，用于接收平台下发的属性读写操作
+ * @author Terran
+ * @since  1.0
  */
 public interface PropertyListener {
 

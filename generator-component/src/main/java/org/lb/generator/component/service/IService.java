@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 import org.lb.generator.component.client.IotResult;
@@ -8,11 +11,9 @@ import org.lb.generator.component.client.req.DeviceEvent;
 import java.util.Map;
 
 /**
- * @ClassName IService
- * @Description 服务接口类
- * @Author Terran
- * @Date 2020/11/4 17:02
- * @Version 1.0
+ * 服务接口类
+ * @author Terran
+ * @since  1.0
  */
 public interface IService {
 

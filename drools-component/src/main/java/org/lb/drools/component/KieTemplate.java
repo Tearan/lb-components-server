@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +39,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @ClassName KieTemplate
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 11:07
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Slf4j
 public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {

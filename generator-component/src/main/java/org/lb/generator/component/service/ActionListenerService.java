@@ -1,11 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 /**
- * @ClassName ActionListenerService
- * @Description 动作监听器，用户接收动作执行结果
- * @Author Terran
- * @Date 2020/11/4 22:22
- * @Version 1.0
+ * 动作监听器，用户接收动作执行结果
+ * @author Terran
+ * @since  1.0
  */
 public interface ActionListenerService {
 

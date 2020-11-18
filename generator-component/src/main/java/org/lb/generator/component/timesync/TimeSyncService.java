@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.timesync;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -13,23 +16,21 @@ import java.util.*;
 
 /**
  *
- * * 时间同步服务，提供简单的时间同步服务，使用方法：
- *  *  IoTDevice device = new IoTDevice(...
- *  *  TimeSyncService timeSyncService = device.getTimeSyncService();
- *  *  timeSyncService.setListener(new TimeSyncListener() {
- *  *             @Override
- *  *             public void onTimeSyncResponse(long device_send_time, long server_recv_time, long server_send_time) {
- *  *                 long device_recv_time = System.currentTimeMillis();
- *  *                 long now = (server_recv_time + server_send_time + device_recv_time - device_send_time) / 2;
- *  *                 System.out.println("now is "+ new Date(now) );
- *  *             }
- *  *         });
- *  *  timeSyncService.RequestTimeSync()
- * @ClassName TimeSyncService
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 22:59
- * @Version 1.0
+ * 时间同步服务，提供简单的时间同步服务，使用方法：
+ * <p>
+ *    IoTDevice device = new IoTDevice(...
+ *    TimeSyncService timeSyncService = device.getTimeSyncService();
+ *    timeSyncService.setListener(new TimeSyncListener() {
+ *                 public void onTimeSyncResponse(long device_send_time, long server_recv_time, long server_send_time) {
+ *                     long device_recv_time = System.currentTimeMillis();
+ *                     long now = (server_recv_time + server_send_time + device_recv_time - device_send_time) / 2;
+ *                    System.out.println("now is "+ new Date(now) );
+ *                  }
+ *             });
+ *     timeSyncService.RequestTimeSync()
+ * </p>
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class TimeSyncService extends AbstractServiceImpl {

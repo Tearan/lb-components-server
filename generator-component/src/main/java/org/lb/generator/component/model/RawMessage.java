@@ -1,11 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 /**
- * @ClassName RawMessage
- * @Description 原始消息类
- * @Author Terran
- * @Date 2020/11/4 22:30
- * @Version 1.0
+ * 原始消息类
+ * @author Terran
+ * @since  1.0
  */
 public class RawMessage {
 

@@ -1,14 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.event.process.*;
 
 /**
- * @ClassName DefaultProcessEventListener
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 14:15
- * @Version 1.0
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class DefaultProcessEventListener implements ProcessEventListener {

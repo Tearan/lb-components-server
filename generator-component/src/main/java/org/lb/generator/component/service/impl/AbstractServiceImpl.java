@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service.impl;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
@@ -18,11 +21,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * @ClassName AbstractService
- * @Description 抽象服务类，提供了属性自动读写和命令调用能力，用户可以继承此类，根据物模型定义自己的服务
- * @Author Terran
- * @Date 2020/11/4 17:01
- * @Version 1.0
+ * 抽象服务类，提供了属性自动读写和命令调用能力，用户可以继承此类，根据物模型定义自己的服务
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 @JsonFilter("AbstractService")

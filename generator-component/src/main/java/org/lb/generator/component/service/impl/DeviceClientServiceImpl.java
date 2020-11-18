@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service.impl;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -26,11 +29,8 @@ import java.util.concurrent.*;
  * 命令：单向，同步，平台向设备调用设备的命令
  * 事件：双向、异步，需要在模型定义
  * 用户不能直接创建DeviceClient实例，只能先创建IoTDevice实例，然后通过IoTDevice的getClient接口获取DeviceClient实例
- * @ClassName DeviceClient
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 17:20
- * @Version 1.0
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class DeviceClientServiceImpl implements RawMessageListenerService {
@@ -445,7 +445,7 @@ public class DeviceClientServiceImpl implements RawMessageListenerService {
 
     /**
      * 设置连接监听器，用户接收连接建立和断开事件
-     * @param connectListener
+     * @param connectListener 连接监听器
      */
     public void setConnectListener(ConnectListenerService connectListener) {
         connection.setConnectListener(connectListener);

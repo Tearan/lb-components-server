@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.filemanager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,11 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ClassName FileManager
- * @Description 未完成
- * @Author Terran
- * @Date 2020/11/4 22:19
- * @Version 1.0
+ * 未完成
+ * @author Terran
+ * @since 1.0
  */
 @Slf4j
 public class FileManager extends AbstractServiceImpl {

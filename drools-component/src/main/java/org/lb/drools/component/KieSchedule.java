@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component;
 
 import org.lb.drools.component.utils.ScheduledThreadPoolExecutorUtil;
@@ -6,11 +9,8 @@ import org.springframework.beans.factory.InitializingBean;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @ClassName KieSchedule
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 14:09
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 public class KieSchedule implements InitializingBean {
 

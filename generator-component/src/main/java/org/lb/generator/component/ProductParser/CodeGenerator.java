@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import freemarker.template.Configuration;
@@ -10,11 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @ClassName CodeGenerator
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 15:35
- * @Version 1.0
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class CodeGenerator {
@@ -85,8 +85,9 @@ public class CodeGenerator {
 
     /**
      * 生成maven项目
-     * @param productZipPath
-     * @throws IOException
+     * @param productZipPath 文件路径
+     * @throws IOException IO异常
+     * @return boolean 返回true成功,其它都是失败
      */
     public static boolean generateMavenProject(String productZipPath) throws IOException{
         /** 提取资源资源文件到当前目录*/

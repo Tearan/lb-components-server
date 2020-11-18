@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.utils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * @ClassName RequestManager
- * @Description 请求管理器
- * @Author Terran
- * @Date 2020/11/4 22:33
- * @Version 1.0
+ * 请求管理器
+ * @author Terran
+ * @version 1.0
  */
 @Slf4j
 public class RequestManagerUtil {

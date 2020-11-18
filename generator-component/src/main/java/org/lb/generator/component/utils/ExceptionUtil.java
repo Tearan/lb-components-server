@@ -1,5 +1,12 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.utils;
 
+/**
+ * @author Terran
+ * @since  1.0
+ */
 public class ExceptionUtil {
     private static final int DEFAULT_LINE = 10;
 

@@ -1,14 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.common;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @ClassName DroolsProperties
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 10:59
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Data
 @ConfigurationProperties(prefix = "spring.drools")

@@ -1,12 +1,13 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.common;
 
 
 /**
- * @ClassName Constants
- * @Description 基础常量
- * @Author Terran
- * @Date 2020/9/28 10:37
- * @Version 1.0
+ * 基础常量
+ * @author Terran
+ * @since 1.0
  */
 public class Constants {
 

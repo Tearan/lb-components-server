@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ota;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,16 +18,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- *  * OTA服务类，提供设备升级相关接口，使用方法：
- *  * IoTDevice device = new IoTDevice(...
- *  * OTAService otaService = device.getOtaService();
- *  * otaService.setOtaListener(new OTAListener() {
- *  * 具体参见OTASample
- * @ClassName OTAService
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 17:24
- * @Version 1.0
+ * OTA服务类，提供设备升级相关接口，使用方法：
+ * IoTDevice device = new IoTDevice(...
+ * OTAService otaService = device.getOtaService();
+ * otaService.setOtaListener(new OTAListener() {
+ * 具体参见OTASample
+ * @author Terran
+ * @since  1.0
  */
 @Slf4j
 public class OTAService extends AbstractServiceImpl {

@@ -1,13 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.service;
 
 import java.util.Map;
 
 /**
- * @ClassName CommandListenerService
- * @Description 命令监听器，用于接收平台下发的命令
- * @Author Terran
- * @Date 2020/11/4 22:26
- * @Version 1.0
+ * 命令监听器，用于接收平台下发的命令
+ * @author Terran
+ * @since  1.0
  */
 public interface CommandListenerService {
 

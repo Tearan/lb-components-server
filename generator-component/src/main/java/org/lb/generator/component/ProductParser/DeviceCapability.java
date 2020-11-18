@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -12,11 +15,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @ClassName DeviceCapability
- * @Description 设备能力
- * @Author Terran
- * @Date 2020/11/3 22:46
- * @Version 1.0
+ * 设备能力
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class DeviceCapability implements Serializable {

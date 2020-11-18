@@ -1,13 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.annotation;
 
 import java.lang.annotation.*;
 
 /**
- * @ClassName Property
- * @Description 属性
- * @Author Terran
- * @Date 2020/11/4 22:11
- * @Version 1.0
+ * 属性
+ * @author Terran
+ * @since 1.0
  */
 @Documented
 @Inherited

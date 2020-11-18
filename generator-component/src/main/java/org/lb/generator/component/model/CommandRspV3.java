@@ -1,13 +1,14 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import lombok.Data;
 
 /**
- * @ClassName CommandRspV3
- * @Description 命令响应V3
- * @Author Terran
- * @Date 2020/11/4 22:48
- * @Version 1.0
+ * 命令响应V3
+ * @author Terran
+ * @since 1.0
  */
 @Data
 public class CommandRspV3 {

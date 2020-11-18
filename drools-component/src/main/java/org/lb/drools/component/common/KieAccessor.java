@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.drools.component.common;
 
 import lombok.Data;
@@ -5,11 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * @ClassName KieAccessor
- * @Description TODO
- * @Author Terran
- * @Date 2020/9/28 11:08
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Data
 @Slf4j

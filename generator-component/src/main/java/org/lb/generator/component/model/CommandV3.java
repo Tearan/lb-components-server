@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import lombok.Data;
@@ -5,11 +8,8 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @ClassName CommandV3
- * @Description TODO
- * @Author Terran
- * @Date 2020/11/4 22:27
- * @Version 1.0
+ * @author Terran
+ * @since 1.0
  */
 @Data
 public class CommandV3 {

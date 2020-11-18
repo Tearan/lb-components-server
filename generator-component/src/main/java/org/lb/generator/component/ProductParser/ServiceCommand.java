@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import lombok.Data;
@@ -6,11 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @ClassName ServiceCommand
- * @Description 执行的命令
- * @Author Terran
- * @Date 2020/11/3 22:57
- * @Version 1.0
+ * 执行的命令
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class ServiceCommand implements Serializable {

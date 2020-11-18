@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,11 +10,9 @@ import org.lb.generator.component.ProductParser.ServiceProperty;
 import java.util.List;
 
 /**
- * @ClassName DeviceProperty
- * @Description 设备属性
- * @Author Terran
- * @Date 2020/11/4 22:49
- * @Version 1.0
+ * 设备属性
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class DeviceProperty {

@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020-2099 the original author or authors.
+ */
 package org.lb.generator.component.ProductParser;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -7,11 +10,9 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @ClassName ServiceCommandPara
- * @Description 服务命令段落
- * @Author Terran
- * @Date 2020/11/3 22:58
- * @Version 1.0
+ * 服务命令段落
+ * @author Terran
+ * @since  1.0
  */
 @Data
 public class ServiceCommandPara implements Serializable {
