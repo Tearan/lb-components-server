@@ -192,6 +192,7 @@ public class MqttConnection implements ConnectionService {
         }
     }
 
+    @Override
     public void close() {
         if (mqttAsyncClient.isConnected()) {
             try {
@@ -210,6 +211,7 @@ public class MqttConnection implements ConnectionService {
         return mqttAsyncClient.isConnected();
     }
 
+    @Override
     public void setConnectListener(ConnectListenerService connectListener) {
         this.connectListener = connectListener;
     }
@@ -222,6 +224,7 @@ public class MqttConnection implements ConnectionService {
      * 订阅指定主题
      * @param topic 主题
      */
+    @Override
     public void subscribeTopic(String topic, ActionListenerService listener, int qos) {
         try {
             mqttAsyncClient.subscribe(topic, qos, null, new IMqttActionListener() {

@@ -24,9 +24,13 @@ import java.util.concurrent.Executors;
  */
 @Slf4j
 public class BootstrapClient implements RawMessageListenerService {
+
     private String deviceId;
+
     private ConnectionService connection;
+
     private ActionListenerService listener;
+
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     /**

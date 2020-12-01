@@ -29,6 +29,7 @@ public class IotRequest {
      * 异步请求才有
      */
     private RequestListenerService listener;
+
     private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();;
 
     public IotRequest(RawMessage rawMessage, String requestId, int timeout) {

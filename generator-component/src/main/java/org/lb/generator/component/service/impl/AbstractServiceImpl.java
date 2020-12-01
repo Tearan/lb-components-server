@@ -5,6 +5,7 @@ package org.lb.generator.component.service.impl;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.lb.generator.component.annotation.DeviceCommand;
 import org.lb.generator.component.annotation.Property;
 import org.lb.generator.component.client.IotResult;
@@ -19,6 +20,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 抽象服务类，提供了属性自动读写和命令调用能力，用户可以继承此类，根据物模型定义自己的服务
@@ -34,7 +38,11 @@ public abstract class AbstractServiceImpl implements IService {
     private Map<String, Field> writeableFields = new HashMap<>();
     private Map<String, FieldPair> readableFields = new HashMap<>();
     private int reportInterval = 0;
-    private Timer timer;
+
+    /** ScheduledExecutorService的手动创建方式*/
+    private ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1,
+            new BasicThreadFactory.Builder().namingPattern("example-schedule-pool-%d").daemon(true).build());
+
     private String serviceId;
 
     private static class  FieldPair{
@@ -259,29 +267,26 @@ public abstract class AbstractServiceImpl implements IService {
      * @param reportInterval 上报周期，单位ms
      */
     public void enableAutoReport(int reportInterval){
-        if (timer != null){
+        if (scheduledExecutorService != null){
             log.error("timer is already enabled");
             return;
         }
 
-        if (timer == null){
-            timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    firePropertiesChanged();
-                }
-            }, reportInterval, reportInterval);
-        }
+        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                firePropertiesChanged();
+            }
+        },reportInterval,reportInterval, TimeUnit.MILLISECONDS);
     }
 
     /**
      * 关闭自动周期上报，您可以通过firePropertiesChanged触发上报
      */
     public void disableAutoReport(){
-        if (timer != null){
-            timer.cancel();
-            timer = null;
+        if (scheduledExecutorService != null){
+           // scheduledExecutorService.cancel(false);
+            scheduledExecutorService = null;
         }
     }
 }

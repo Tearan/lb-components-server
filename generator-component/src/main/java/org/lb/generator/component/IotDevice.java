@@ -57,6 +57,7 @@ public class IotDevice extends AbstractDevice {
      * 初始化，创建到平台的连接
      * @return 此接口为阻塞调用，如果连接成功，返回0；否则返回-1
      */
+    @Override
     public int init() {
         return super.init();
     }
@@ -66,6 +67,7 @@ public class IotDevice extends AbstractDevice {
      * @param serviceId     服务id，要和设备模型定义一致
      * @param deviceService 服务实例
      */
+    @Override
     public void addService(String serviceId, AbstractServiceImpl deviceService) {
         super.addService(serviceId, deviceService);
     }
@@ -75,6 +77,7 @@ public class IotDevice extends AbstractDevice {
      * @param serviceId 服务id
      * @return AbstractService 服务实例
      */
+    @Override
     public AbstractServiceImpl getService(String serviceId) {
         return super.getService(serviceId);
     }
@@ -84,6 +87,7 @@ public class IotDevice extends AbstractDevice {
      * @param serviceId  服务id
      * @param properties 属性列表
      */
+    @Override
     public void firePropertiesChanged(String serviceId, String... properties) {
         super.firePropertiesChanged(serviceId, properties);
     }
@@ -92,6 +96,7 @@ public class IotDevice extends AbstractDevice {
      * 触发多个服务的属性变化，SDK自动上报变化的属性到平台
      * @param serviceIds 发生变化的服务id列表
      */
+    @Override
     public void fireServicesChanged(List<String> serviceIds) {
         super.fireServicesChanged(serviceIds);
     }
@@ -100,6 +105,7 @@ public class IotDevice extends AbstractDevice {
      * 获取设备客户端。获取到设备客户端后，可以直接调用客户端提供的消息、属性、命令等接口
      * @return 设备客户端实例
      */
+    @Override
     public DeviceClientServiceImpl getClient() {
         return super.getClient();
     }
