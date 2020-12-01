@@ -151,7 +151,7 @@
 						<version>2.2.1</version>
 						<executions>
 							<execution>
-								<id>attach-sources</id>
+								<id>package</id>
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
@@ -166,7 +166,7 @@
 						<version>2.9.1</version>
 						<executions>
 							<execution>
-								<id>attach-javadocs</id>
+								<id>package</id>
 								<goals>
 									<goal>jar</goal>
 								</goals>
