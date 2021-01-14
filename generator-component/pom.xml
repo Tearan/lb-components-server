@@ -121,11 +121,11 @@
 
 	<profiles>
 		<profile>
-			<id>ossrh</id>
+			<id>release</id>
 			<build>
 				<plugins>
 					<!-- Nexus Staging Maven插件，用于部署和发布-->
-					<plugin>
+					<!--<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
 						<version>1.6.7</version>
@@ -135,10 +135,10 @@
 							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 							<autoReleaseAfterClose>true</autoReleaseAfterClose>
 						</configuration>
-					</plugin>
+					</plugin>-->
 
 					<!-- release -->
-					<plugin>
+					<!--<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-release-plugin</artifactId>
 						<version>2.5</version>
@@ -148,7 +148,7 @@
 							<releaseProfiles>release</releaseProfiles>
 							<goals>deploy</goals>
 						</configuration>
-					</plugin>
+					</plugin>-->
 
 					<!-- 生成sources源码包的插件 -->
 					<plugin>
@@ -157,7 +157,7 @@
 						<version>2.2.1</version>
 						<executions>
 							<execution>
-								<id>package</id>
+								<id>attach-sources</id>
 								<goals>
 									<goal>jar-no-fork</goal>
 								</goals>
@@ -172,7 +172,7 @@
 						<version>2.9.1</version>
 						<executions>
 							<execution>
-								<id>package</id>
+								<id>attach-javadocs</id>
 								<goals>
 									<goal>jar</goal>
 								</goals>
@@ -197,7 +197,7 @@
 					</plugin>
 
 					<!-- compiler -->
-					<plugin>
+					<!--<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.3</version>
@@ -205,7 +205,7 @@
 							<source>1.8</source>
 							<target>1.8</target>
 						</configuration>
-					</plugin>
+					</plugin>-->
 
 				</plugins>
 			</build>
@@ -222,5 +222,26 @@
 			</distributionManagement>-->
 		</profile>
 	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- sonatype提供了自动release的插件，这意味着运行mvn clean deploy后不用手动去close-> release了，此插件会自动release我们的项目到Maven中央仓库。 -->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
