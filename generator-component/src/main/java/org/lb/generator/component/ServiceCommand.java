@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component.ProductParser;
+package org.lb.generator.component;
 
 import lombok.Data;
 

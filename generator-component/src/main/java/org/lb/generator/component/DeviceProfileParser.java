@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component.ProductParser;
+package org.lb.generator.component;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -26,9 +26,9 @@ import java.util.zip.ZipFile;
 @Slf4j
 public class DeviceProfileParser {
 
-    private static final String DEVICETYPE_CAPABILITY = "devicetype-capability";
+    private static final String DEVICE_TYPE_CAPABILITY = "devicetype-capability";
 
-    private static final String SERVICETYPE_CAPABILITY = "servicetype-capability";
+    private static final String SERVICE_TYPE_CAPABILITY = "servicetype-capability";
 
     private static final String DEVICES_TITLE = "devices";
 
@@ -59,11 +59,11 @@ public class DeviceProfileParser {
                     }
 
                     /** 读取设备能力*/
-                    if (outPath.contains(DEVICETYPE_CAPABILITY)){
+                    if (outPath.contains(DEVICE_TYPE_CAPABILITY)){
                         deviceCapabilities = getDeviceCapability(outPath);
                     }
                     /** 读取服务能力*/
-                    if (outPath.contains(SERVICETYPE_CAPABILITY)){
+                    if (outPath.contains(SERVICE_TYPE_CAPABILITY)){
                         Map<String,DeviceService> deviceServiceMap1 = getServiceCapability(outPath,false);
                         if (deviceServiceMap1 != null){
                             deviceServiceMap.putAll(deviceServiceMap1);

@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component.ProductParser;
+package org.lb.generator.component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -30,7 +30,7 @@ public class ServiceProperty implements Serializable {
 
     private String propertyName;
 
-    //@Pattern(regexp = "(int|long|decimal|string|DateTime|jsonObject|enum|boolean|string list)")
+    /** @Pattern(regexp = "(int|long|decimal|string|DateTime|jsonObject|enum|boolean|string list)")*/
     private String dataType;
 
     @JsonIgnore

@@ -1,9 +1,9 @@
-package com.huaweicloud.sdk.iot.device.demo;
+package com.lbcloud.sdk.iot.device.demo;
 
-import com.huaweicloud.sdk.iot.device.client.requests.CommandRsp;
-import com.huaweicloud.sdk.iot.device.service.AbstractService;
-import com.huaweicloud.sdk.iot.device.service.DeviceCommand;
-import com.huaweicloud.sdk.iot.device.service.Property;
+import com.lbcloud.sdk.iot.device.client.requests.CommandRsp;
+import com.lbcloud.sdk.iot.device.service.AbstractService;
+import com.lbcloud.sdk.iot.device.service.DeviceCommand;
+import com.lbcloud.sdk.iot.device.service.Property;
 import java.util.Map;
 import java.util.Random;
 import org.apache.log4j.Logger;

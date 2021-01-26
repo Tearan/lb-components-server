@@ -1,6 +1,6 @@
-package com.huaweicloud.sdk.iot.device.demo;
+package com.lbcloud.sdk.iot.device.demo;
 
-import com.huaweicloud.sdk.iot.device.IoTDevice;
+import com.lbcloud.sdk.iot.device.IoTDevice;
 
 
 

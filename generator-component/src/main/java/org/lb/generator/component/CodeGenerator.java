@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component.ProductParser;
+package org.lb.generator.component;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -51,7 +51,7 @@ public class CodeGenerator {
              Template template = configuration.getTemplate("service.ftl");
              for (String sid : productInfo.getServiceCapabilityMap().keySet()){
                  DeviceService deviceService = productInfo.getServiceCapabilityMap().get(sid);
-                 File file = new File("generated-demo/src/main/java/com/huaweicloud/sdk/iot/device/demo/" + deviceService.getServiceType() + "Service.java");
+                 File file = new File("generated-demo/src/main/java/com/lbcloud/sdk/iot/device/demo/" + deviceService.getServiceType() + "Service.java");
                  Map<String, Object> root = new HashMap<String, Object>();
                  root.put("service", deviceService);
                  Writer javaWriter = new FileWriter(file);
@@ -100,11 +100,5 @@ public class CodeGenerator {
         deleteFile(new File("tmp\\"));
         return true;
     }
-
-
-  /*  public static void main(String[] args) throws IOException{
-        boolean flang = generateMavenProject("E:\\QQ微信记录\\NBSmoke001.zip");
-        System.out.println(flang);
-    }*/
 
 }
