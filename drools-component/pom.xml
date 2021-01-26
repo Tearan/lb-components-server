@@ -5,7 +5,7 @@
 
 	<groupId>com.lbyiot</groupId>
 	<artifactId>drools-component</artifactId>
-	<version>1.0.0-LB</version>
+	<version>1.0.0</version>
 
 	<name>drools-component</name>
 	<description>drools-component</description>
