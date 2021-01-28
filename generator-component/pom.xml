@@ -5,7 +5,7 @@
 
 	<groupId>com.lbyiot</groupId>
 	<artifactId>generator-component</artifactId>
-	<version>1.0.0-LB</version>
+	<version>1.0.1-LB</version>
 
 	<name>generator-component</name>
 	<description>generator-component</description>
