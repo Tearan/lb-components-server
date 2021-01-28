@@ -46,11 +46,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
 
     /** 使用分布式：Redis等；没有使用则使用本地缓存*/
-    public Map<String,String> CACHE_RULE = new ConcurrentHashMap<String, String>();
+    public Map<String,String> cacheRule = new ConcurrentHashMap<String, String>(18);
 
-    public static Map<String, BlockingQueue<KieSession>> SESSION = new ConcurrentHashMap<String, BlockingQueue<KieSession>>();
+    public static Map<String, BlockingQueue<KieSession>> SESSION = new ConcurrentHashMap<String, BlockingQueue<KieSession>>(18);
 
-    public static Map<String,BlockingQueue<KieBase>> BASE = new ConcurrentHashMap<String, BlockingQueue<KieBase>>();
+    public static Map<String,BlockingQueue<KieBase>> BASE = new ConcurrentHashMap<String, BlockingQueue<KieBase>>(18);
 
     private ClassLoader classLoader;
 
@@ -75,12 +75,12 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
     public KieSession getKieSession(String... fileName){
         List<String> ds = new ArrayList<String>();
         for (String name : fileName){
-            String content = CACHE_RULE.get(name);
+            String content = cacheRule.get(name);
             if (StringUtils.isBlank(content)){
                 ds = doReadTemp(fileName);
                 return decodeToSession(ds.toArray(new String[]{}));
             }
-            ds.add(CACHE_RULE.get(name));
+            ds.add(cacheRule.get(name));
         }
         return decodeToSession(ds.toArray(new String[]{}));
     }
@@ -228,7 +228,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
         for (File file : fileList){
             String fileName = file.getName();
             String content = encodeToString(file.getPath());
-            CACHE_RULE.put(fileName,content);
+            cacheRule.put(fileName,content);
         }
 
         /** redis【2级缓存】*/
@@ -251,7 +251,7 @@ public class KieTemplate extends KieAccessor implements BeanClassLoaderAware {
             if (stringList.contains(file.getName())){
                 String content = encodeToString(file.getPath());
                 strings.add(content);
-                CACHE_RULE.put(file.getName(),content);
+                cacheRule.put(file.getName(),content);
             }
         }
         return strings;

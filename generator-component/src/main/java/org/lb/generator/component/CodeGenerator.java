@@ -44,15 +44,15 @@ public class CodeGenerator {
     }
 
     public static void generateService(ProductInfo productInfo){
-         Configuration configuration = new Configuration();
+         Configuration configuration = new Configuration(Configuration.VERSION_2_3_25);
          try {
              configuration.setDirectoryForTemplateLoading(new File("tmp\\"));
-             configuration.setObjectWrapper(new DefaultObjectWrapper());
+             configuration.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_25));
              Template template = configuration.getTemplate("service.ftl");
              for (String sid : productInfo.getServiceCapabilityMap().keySet()){
                  DeviceService deviceService = productInfo.getServiceCapabilityMap().get(sid);
                  File file = new File("generated-demo/src/main/java/com/lbcloud/sdk/iot/device/demo/" + deviceService.getServiceType() + "Service.java");
-                 Map<String, Object> root = new HashMap<String, Object>();
+                 Map<String, Object> root = new HashMap<String, Object>(2);
                  root.put("service", deviceService);
                  Writer javaWriter = new FileWriter(file);
                  template.process(root, javaWriter);

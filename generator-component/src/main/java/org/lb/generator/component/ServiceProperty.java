@@ -57,6 +57,7 @@ public class ServiceProperty implements Serializable {
     // 访问方法：RWE 可读R，可写W，可观察E
 
     //@Pattern(regexp = "(RWE|RW|RE|WE|E|W|R)")
+
     private String method;
 
     private String unit;

@@ -50,7 +50,7 @@ public class DeviceProfileParser {
         try {
             /** 读取设备能力及服务能力*/
             List<DeviceCapability> deviceCapabilities = null;
-            Map<String,DeviceService> deviceServiceMap = new HashMap<String,DeviceService>();
+            Map<String,DeviceService> deviceServiceMap = new HashMap<String,DeviceService>(66);
             List<String> list = unZipFiles(zipFile,"tmp\\");
             if (list != null){
                 for (String outPath : list){
@@ -162,7 +162,7 @@ public class DeviceProfileParser {
         TypeReference<HashMap<String,List<DeviceService>>> typeReference = new TypeReference<HashMap<String, List<DeviceService>>>() {
         };
         HashMap<String,List<DeviceService>> hm = null;
-        Map<String, DeviceService> serviceCapabilityMap = new HashMap<String, DeviceService>();
+        Map<String, DeviceService> serviceCapabilityMap = new HashMap<String, DeviceService>(66);
         try {
             hm = objectMapper.readValue(file,typeReference);
             if (hm == null){
@@ -177,31 +177,32 @@ public class DeviceProfileParser {
                      * 创建实体属性
                      * int|long|decimal|string|DateTime|jsonObject|enum|boolean|string
                      */
-                    if (dataType.equalsIgnoreCase("tinyint")){
+
+                    if (("tinyint").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Integer");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("smallint")){
+                    }else if (("smallint").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Integer");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("mediumint")){
+                    }else if (("mediumint").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Integer");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("int")){
+                    }else if (("int").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Integer");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("Integer")){
+                    }else if (("Integer").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Integer");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("bigint")){
+                    }else if (("bigint").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Long");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("Long")){
+                    }else if (("Long").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("Long");
                         serviceProperty.setVal("random.nextInt(100)");
-                    }else if (dataType.equalsIgnoreCase("decimal")){
+                    }else if (("decimal").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("double");
                         serviceProperty.setVal("random.nextFloat()");
-                    }else if (dataType.equalsIgnoreCase("boolean")){
+                    }else if (("boolean").equalsIgnoreCase(dataType)){
                         serviceProperty.setJavaType("boolean");
                         serviceProperty.setVal("true");
                     }else {
