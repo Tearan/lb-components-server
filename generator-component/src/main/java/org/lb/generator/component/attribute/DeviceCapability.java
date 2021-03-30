@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component;
+package org.lb.generator.component.attribute;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -104,7 +104,6 @@ public class DeviceCapability implements Serializable {
 
     /** 节点类型，该字段暂时不用，保留 */
     private String nodeType;
-
 
     private void writeObject(ObjectOutputStream objectOutputStream) throws IOException{
         objectOutputStream.defaultWriteObject();

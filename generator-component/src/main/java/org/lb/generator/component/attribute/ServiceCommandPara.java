@@ -1,7 +1,7 @@
 /*
  * Copyright 2020-2099 the original author or authors.
  */
-package org.lb.generator.component;
+package org.lb.generator.component.attribute;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.Data;
